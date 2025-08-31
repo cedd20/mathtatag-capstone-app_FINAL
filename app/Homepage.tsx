@@ -17,6 +17,14 @@ const map1 = require('../assets/game pngs/map1.png');
 const map2 = require('../assets/game pngs/map2.png');
 const map3 = require('../assets/game pngs/map3.png');
 const map4 = require('../assets/game pngs/map4.png');
+const map5 = require('../assets/game pngs/map5.png');
+const map6 = require('../assets/game pngs/map6.png');
+const map7 = require('../assets/game pngs/map7.png');
+const map8 = require('../assets/game pngs/map8.png');
+const map9 = require('../assets/game pngs/map9.png');
+const map10 = require('../assets/game pngs/map10.png');
+const map11 = require('../assets/game pngs/map11.png');
+const map12 = require('../assets/game pngs/map12.png');
 const deck = require('../assets/game pngs/deck.png');
 const arrowL = require('../assets/game pngs/arrowL.png');
 const arrowR = require('../assets/game pngs/arrowR.png');
@@ -38,9 +46,25 @@ export default function Homepage() {
     useRef(new Animated.Value(1)).current,
     useRef(new Animated.Value(1)).current,
     useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
+    useRef(new Animated.Value(1)).current,
   ];
   // Animated values for map 3D rotation
   const mapRotations = [
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
     useRef(new Animated.Value(0)).current,
     useRef(new Animated.Value(0)).current,
     useRef(new Animated.Value(0)).current,
@@ -83,7 +107,7 @@ export default function Homepage() {
     }
   };
 
-  // Play button handler (now depends on currentMapIdx)
+  // Play button handler (only map 1 is unlocked)
   const handlePlay = async () => {
     if (currentMapIdx === 0) {
       router.push('/LoadingScreen');
@@ -193,7 +217,7 @@ export default function Homepage() {
       : `Maligayang pagdating sa Mathtatag! Sa paggamit ng app na ito, sumasang-ayon ka sa mga sumusunod:\n\n1. Para sa Edukasyon: Ang app na ito ay para sa mga mag-aaral, magulang, at guro upang suportahan ang pagkatuto sa matematika at pagsubaybay ng progreso.\n2. Privacy ng Data: Ang iyong impormasyon at datos ng progreso ay ligtas at ginagamit lamang para sa edukasyonal na layunin sa app.\n3. Pahintulot ng Magulang: Kailangang may gabay at pahintulot ng magulang ang paggamit ng app ng bata.\n4. Iwasan ang Pandaraya: Sumasang-ayon ang mga gumagamit na hindi gagamitin ang app sa maling paraan o magpepeke ng resulta.\n5. Karapatan sa Nilalaman: Lahat ng larawan, musika, at nilalaman ay pag-aari ng Mathtatag o ng may-ari nito.\n6. Update: Maaring magbago ang app ng mga tampok o tuntunin anumang oras.\n7. Suporta: Para sa tanong o isyu, kontakin ang iyong guro o app support.\n\nSa pagpapatuloy ng paggamit ng Mathtatag, tinatanggap mo ang mga tuntuning ito.`
   };
 
-  const mapImages = [map1, map2, map3, map4];
+  const mapImages = [map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12];
   const [currentMapIdx, setCurrentMapIdx] = useState(0);
 
   return (
@@ -328,7 +352,7 @@ export default function Homepage() {
         {/* Map image centered on deck */}
         <View style={{position:'absolute',left:'50%',top:'50%',width:320,height:500,marginLeft:-160,marginTop:-235,zIndex:4,alignItems:'center',justifyContent:'center'}}>
           <Image source={mapImages[currentMapIdx]} style={styles.mapOnDeck} resizeMode="contain" />
-          {/* Lock overlay for maps 2, 3, 4 */}
+          {/* Lock overlay for maps 2-12 (only map 1 is unlocked) */}
           {currentMapIdx > 0 && (
             <Image source={lock} style={styles.lockOverlay} resizeMode="contain" />
           )}
