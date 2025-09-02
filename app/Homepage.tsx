@@ -107,7 +107,7 @@ export default function Homepage() {
     }
   };
 
-  // Play button handler (only map 1 is unlocked)
+  // Play button handler (now depends on currentMapIdx)
   const handlePlay = async () => {
     if (currentMapIdx === 0) {
       router.push('/LoadingScreen');
@@ -218,6 +218,11 @@ export default function Homepage() {
   };
 
   const mapImages = [map1, map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12];
+  const mapNames = [
+    'SCHOOL', 'MALL', 'ISLAND', 'FOREST',
+    'HOUSE', 'TEMPLE', 'LABORATORY', 'ATLANTIC',
+    'ICELAND', 'LAND', 'Haunted House', 'VOLCANO'
+  ];
   const [currentMapIdx, setCurrentMapIdx] = useState(0);
 
   return (
@@ -352,6 +357,13 @@ export default function Homepage() {
         {/* Map image centered on deck */}
         <View style={{position:'absolute',left:'50%',top:'50%',width:320,height:500,marginLeft:-160,marginTop:-235,zIndex:4,alignItems:'center',justifyContent:'center'}}>
           <Image source={mapImages[currentMapIdx]} style={styles.mapOnDeck} resizeMode="contain" />
+          
+          {/* Week Number at top of panel */}
+          <Text style={styles.weekNumberTop}>Week {currentMapIdx + 1}</Text>
+          
+          {/* Map Name at bottom of panel */}
+          <Text style={styles.mapNameBottom}>{mapNames[currentMapIdx].toUpperCase()}</Text>
+          
           {/* Lock overlay for maps 2-12 (only map 1 is unlocked) */}
           {currentMapIdx > 0 && (
             <Image source={lock} style={styles.lockOverlay} resizeMode="contain" />
@@ -615,5 +627,35 @@ const styles = StyleSheet.create({
     marginTop: -80,
     zIndex: 10,
     opacity: 0.85,
+  },
+  weekNumberTop: {
+    position: 'absolute',
+    top: 138,
+    left: 0,
+    right: 0,
+    color: '#000',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    zIndex: 6,
+    fontFamily: 'LuckiestGuy-Regular',
+    textShadowColor: 'rgba(255, 255, 255, 0.8)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  mapNameBottom: {
+    position: 'absolute',
+    bottom: 133,
+    left: 0,
+    right: 0,
+    color: '#FFD700',
+    fontSize: 27,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    zIndex: 6,
+    fontFamily: 'LuckiestGuy-Regular',
+    textShadowColor: 'rgba(0, 0, 0, 0.8)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
   },
 }); 
